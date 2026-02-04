@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini Aksiyon Oyunu</title>
+
+<style>
+body{
+    margin:0;
+    background:#222;
+    font-family:Arial;
+    text-align:center;
+    color:white;
+}
+
+.container{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.character{
+    width:250px;
+    height:250px;
+    border-radius:50%;
+    overflow:hidden;
+    border:5px solid white;
+    transition:0.2s;
+}
+
+.character img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.buttons{
+    position:fixed;
+    bottom:30px;
+    display:flex;
+    gap:15px;
+}
+
+button{
+    padding:15px 20px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+#status{
+    margin-top:20px;
+    font-size:22px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="character" id="face">
+    <img src="face.jpg">
+</div>
+
+<div id="status">Normal 😐</div>
+
+</div>
+
+<div class="buttons">
+<button onclick="action('tokat')">Tokat</button>
+<button onclick="action('yumruk')">Yumruk</button>
+<button onclick="action('tekme')">Tekme</button>
+</div>
+
+<script>
+let face = document.getElementById("face")
+let status = document.getElementById("status")
+
+function shake(){
+    face.style.transform = "translateX(20px)"
+    setTimeout(()=> face.style.transform = "translateX(-20px)",100)
+    setTimeout(()=> face.style.transform = "translateX(0px)",200)
+}
+
+function action(type){
+
+    shake()
+
+    if(type=="tokat"){
+        status.innerText="Acıdı 😖"
+    }
+
+    if(type=="yumruk"){
+        status.innerText="Çok acıdı 😫"
+    }
+
+    if(type=="tekme"){
+        status.innerText="Moralim bozuldu 😢"
+    }
+
+}
+</script>
+
+</body>
+</html>
