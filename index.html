@@ -8,136 +8,149 @@
 <style>
 
 body{
-    margin:0;
-    background:#1f1f1f;
-    color:white;
-    font-family:Arial;
-    text-align:center;
-    overflow:hidden;
+margin:0;
+background:#1f1f1f;
+color:white;
+font-family:Arial;
+text-align:center;
+overflow:hidden;
 }
 
-/* KARAKTER */
+/* KARAKTER ALANI */
 .character{
-    position:relative;
-    width:200px;
-    margin:80px auto;
-    transition:0.4s;
+position:relative;
+width:240px;
+margin:60px auto;
+transition:.5s;
 }
 
+/* VÜCUT */
+.body{
+width:180px;
+height:220px;
+background:#ff2a2a;
+border-radius:90px 90px 30px 30px;
+margin:auto;
+}
+
+/* YÜZ */
 .face{
-    width:200px;
-    height:200px;
-    border-radius:50%;
-    overflow:hidden;
-    border:5px solid white;
+position:absolute;
+top:-70px;
+left:50%;
+transform:translateX(-50%);
+width:140px;
+height:140px;
+border-radius:50%;
+overflow:hidden;
+border:5px solid white;
 }
 
 .face img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
 /* TOKAT ELİ */
 .hand{
-    position:absolute;
-    width:120px;
-    left:-140px;
-    top:40px;
-    opacity:0;
+position:absolute;
+width:110px;
+left:-130px;
+top:20px;
+opacity:0;
 }
 
-/* BUTONLAR */
+/* BUTON */
 .buttons{
-    position:fixed;
-    bottom:40px;
-    width:100%;
+position:fixed;
+bottom:40px;
+width:100%;
 }
 
 button{
-    padding:15px 20px;
-    margin:5px;
-    font-size:18px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
+padding:15px 20px;
+margin:5px;
+font-size:18px;
+border:none;
+border-radius:10px;
+cursor:pointer;
 }
 
-/* AFFEDİLME BAR */
+/* BAR */
 .barContainer{
-    width:80%;
-    height:25px;
-    background:#444;
-    margin:20px auto;
-    border-radius:20px;
-    overflow:hidden;
+width:80%;
+height:25px;
+background:#444;
+margin:20px auto;
+border-radius:20px;
+overflow:hidden;
 }
 
 .bar{
-    height:100%;
-    width:0%;
-    background:#ff5c8a;
-    transition:0.4s;
+height:100%;
+width:0%;
+background:#ff5c8a;
+transition:.4s;
 }
 
-/* FINAL EKRAN */
+/* FINAL */
 .final{
-    position:fixed;
-    inset:0;
-    background:black;
-    display:none;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    font-size:40px;
+position:fixed;
+inset:0;
+background:black;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-size:40px;
 }
 
-/* KALP ANİMASYON */
+/* KALP */
 .heart{
-    position:absolute;
-    color:red;
-    font-size:30px;
-    animation:float 3s linear infinite;
+position:absolute;
+font-size:30px;
+animation:float 3s linear infinite;
 }
 
 @keyframes float{
-    0%{ transform:translateY(0); opacity:1;}
-    100%{ transform:translateY(-600px); opacity:0;}
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-600px);opacity:0;}
 }
 
-/* ANİMASYONLAR */
-
-@keyframes slapHand {
-    0% { left:-140px; opacity:0;}
-    40% { left:30px; opacity:1;}
-    100% { left:-140px; opacity:0;}
+/* TOKAT ELİ ANİMASYON */
+@keyframes slapHand{
+0%{left:-130px;opacity:0;}
+40%{left:40px;opacity:1;}
+100%{left:-130px;opacity:0;}
 }
 
-@keyframes ragdoll {
-    0% { transform:rotate(0deg);}
-    30% { transform:rotate(-20deg);}
-    60% { transform:rotate(15deg);}
-    100% { transform:rotate(0deg);}
+/* SAVRULMA */
+@keyframes ragdoll{
+0%{transform:rotate(0deg);}
+30%{transform:rotate(-20deg);}
+60%{transform:rotate(15deg);}
+100%{transform:rotate(0deg);}
 }
 
-@keyframes punchAnim {
-    0% { transform:translateX(0);}
-    30% { transform:translateX(-50px);}
-    60% { transform:translateX(30px);}
-    100% { transform:translateX(0);}
+@keyframes punch{
+0%{transform:translateX(0);}
+30%{transform:translateX(-40px);}
+60%{transform:translateX(30px);}
+100%{transform:translateX(0);}
 }
 
-@keyframes kickAnim {
-    0% { transform:translateY(0);}
-    30% { transform:translateY(-35px);}
-    60% { transform:translateY(15px);}
-    100% { transform:translateY(0);}
+@keyframes kick{
+0%{transform:translateY(0);}
+30%{transform:translateY(-35px);}
+60%{transform:translateY(15px);}
+100%{transform:translateY(0);}
 }
 
-.slapAnim{ animation:ragdoll 0.6s;}
-.punchAnim{ animation:punchAnim 0.6s;}
-.kickAnim{ animation:kickAnim 0.6s;}
-.handAnim{ animation:slapHand 0.5s;}
+.slapAnim{animation:ragdoll .6s;}
+.punchAnim{animation:punch .6s;}
+.kickAnim{animation:kick .6s;}
+.handAnim{animation:slapHand .5s;}
 
 </style>
 </head>
@@ -156,6 +169,8 @@ button{
 <img src="face.jpg">
 </div>
 
+<div class="body"></div>
+
 <img class="hand" id="hand"
 src="https://i.imgur.com/ZK8YBvP.png">
 
@@ -173,15 +188,15 @@ src="https://i.imgur.com/ZK8YBvP.png">
 
 <script>
 
-let char = document.getElementById("char")
-let hand = document.getElementById("hand")
-let bar = document.getElementById("bar")
-let finalMsg = document.getElementById("finalMsg")
-let status = document.getElementById("status")
+let char=document.getElementById("char")
+let hand=document.getElementById("hand")
+let bar=document.getElementById("bar")
+let finalMsg=document.getElementById("finalMsg")
+let status=document.getElementById("status")
 
-let forgiveness = 0
+let forgiveness=0
 
-let messages = [
+let messages=[
 "Tamam hak ettim 😔",
 "Bir daha yapmayacağım 🥲",
 "Affet artık ya 😭",
@@ -190,60 +205,49 @@ let messages = [
 ]
 
 function randomMsg(){
-    status.innerText =
-    messages[Math.floor(Math.random()*messages.length)]
+status.innerText=messages[Math.floor(Math.random()*messages.length)]
 }
 
 function createHeart(){
-    let heart = document.createElement("div")
-    heart.className="heart"
-    heart.innerText="❤️"
-    heart.style.left=Math.random()*100+"%"
-    heart.style.bottom="0px"
-
-    document.body.appendChild(heart)
-
-    setTimeout(()=> heart.remove(),3000)
+let heart=document.createElement("div")
+heart.className="heart"
+heart.innerText="❤️"
+heart.style.left=Math.random()*100+"%"
+heart.style.bottom="0px"
+document.body.appendChild(heart)
+setTimeout(()=>heart.remove(),3000)
 }
 
 function startHearts(){
-    setInterval(createHeart,300)
+setInterval(createHeart,300)
 }
 
 function increaseBar(){
-    forgiveness += 20
-    bar.style.width = forgiveness + "%"
+forgiveness+=20
+bar.style.width=forgiveness+"%"
 
-    if(forgiveness >= 100){
-        finalMsg.style.display = "flex"
-        startHearts()
-    }
+if(forgiveness>=100){
+finalMsg.style.display="flex"
+startHearts()
+}
 }
 
 function act(type){
 
-    char.className="character"
+char.className="character"
 
-    if(type=="tokat"){
-        char.classList.add("slapAnim")
-        hand.classList.add("handAnim")
-    }
+if(type=="tokat"){
+char.classList.add("slapAnim")
+hand.classList.add("handAnim")
+}
 
-    if(type=="yumruk"){
-        char.classList.add("punchAnim")
-    }
+if(type=="yumruk") char.classList.add("punchAnim")
+if(type=="tekme") char.classList.add("kickAnim")
 
-    if(type=="tekme"){
-        char.classList.add("kickAnim")
-    }
+randomMsg()
+increaseBar()
 
-    randomMsg()
-    increaseBar()
-
-    setTimeout(()=>{
-        hand.classList.remove("handAnim")
-    },500)
-
+setTimeout(()=>hand.classList.remove("handAnim"),500)
 }
 
 </script>
