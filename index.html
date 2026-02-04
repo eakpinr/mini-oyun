@@ -6,6 +6,7 @@
 <title>Özür Oyunu</title>
 
 <style>
+
 body{
     margin:0;
     background:#1f1f1f;
@@ -18,38 +19,31 @@ body{
 /* KARAKTER */
 .character{
     position:relative;
-    width:260px;
-    margin:60px auto;
+    width:200px;
+    margin:80px auto;
     transition:0.4s;
 }
 
-.body{
-    width:260px;
-    height:300px;
-    background:#d62828;
-    border-radius:120px 120px 40px 40px;
-    margin:auto;
-}
-
-
 .face{
-    position:absolute;
-    top:35px;
-    left:75px;
-    width:110px;
-    height:110px;
+    width:200px;
+    height:200px;
     border-radius:50%;
     overflow:hidden;
+    border:5px solid white;
 }
 
-.face img{ width:100%; }
+.face img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
 
 /* TOKAT ELİ */
 .hand{
     position:absolute;
     width:120px;
-    left:-120px;
-    top:60px;
+    left:-140px;
+    top:40px;
     opacity:0;
 }
 
@@ -111,35 +105,36 @@ button{
     100%{ transform:translateY(-600px); opacity:0;}
 }
 
-/* ANİMASYON */
+/* ANİMASYONLAR */
+
 @keyframes slapHand {
-    0% { left:-120px; opacity:0;}
-    40% { left:40px; opacity:1;}
-    100% { left:-120px; opacity:0;}
+    0% { left:-140px; opacity:0;}
+    40% { left:30px; opacity:1;}
+    100% { left:-140px; opacity:0;}
 }
 
-@keyframes ragdollLeft {
+@keyframes ragdoll {
     0% { transform:rotate(0deg);}
-    30% { transform:rotate(-25deg);}
+    30% { transform:rotate(-20deg);}
     60% { transform:rotate(15deg);}
     100% { transform:rotate(0deg);}
 }
 
 @keyframes punchAnim {
     0% { transform:translateX(0);}
-    30% { transform:translateX(-60px);}
-    60% { transform:translateX(40px);}
+    30% { transform:translateX(-50px);}
+    60% { transform:translateX(30px);}
     100% { transform:translateX(0);}
 }
 
 @keyframes kickAnim {
     0% { transform:translateY(0);}
-    30% { transform:translateY(-40px);}
-    60% { transform:translateY(20px);}
+    30% { transform:translateY(-35px);}
+    60% { transform:translateY(15px);}
     100% { transform:translateY(0);}
 }
 
-.slapAnim{ animation:ragdollLeft 0.6s;}
+.slapAnim{ animation:ragdoll 0.6s;}
 .punchAnim{ animation:punchAnim 0.6s;}
 .kickAnim{ animation:kickAnim 0.6s;}
 .handAnim{ animation:slapHand 0.5s;}
@@ -156,9 +151,6 @@ button{
 </div>
 
 <div class="character" id="char">
-
-<div class="body"></div>
-
 
 <div class="face">
 <img src="face.jpg">
